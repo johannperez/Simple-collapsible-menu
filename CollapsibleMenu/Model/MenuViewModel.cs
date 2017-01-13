@@ -7,7 +7,7 @@ namespace CollapsibleMenu
 {
 	public class MenuViewModel : INotifyPropertyChanged
 	{
-		private List<MenuItem> allMenuItems = new List<MenuItem>();
+		private List<MenuItem> menuItems = new List<MenuItem>();
 
 		public ObservableCollection<MenuItem> VisibleMenuItems { get; set; } = new ObservableCollection<MenuItem>();
 
@@ -18,13 +18,13 @@ namespace CollapsibleMenu
 
 		public MenuViewModel()
 		{
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "1", InnerItem = false, Name = "Menu #1" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "1.1", InnerItem = true, Name = "Menu #1.1" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "1.2", InnerItem = true, Name = "Menu #1.2" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "2", InnerItem = false, Name = "Menu #2" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "2.1", InnerItem = true, Name = "Menu #2.1" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "2.2", InnerItem = true, Name = "Menu #2.2" });
-			allMenuItems.Add(new MenuItem() { Collapsed = true, Id = "3", InnerItem = false, Name = "Menu #3" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "1", InnerItem = false, Name = "Menu #1" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "1.1", InnerItem = true, Name = "Menu #1.1" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "1.2", InnerItem = true, Name = "Menu #1.2" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "2", InnerItem = false, Name = "Menu #2" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "2.1", InnerItem = true, Name = "Menu #2.1" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "2.2", InnerItem = true, Name = "Menu #2.2" });
+			menuItems.Add(new MenuItem() { Collapsed = true, Id = "3", InnerItem = false, Name = "Menu #3" });
 
 			LoadVisibleItems();
 		}
@@ -36,14 +36,14 @@ namespace CollapsibleMenu
 			else
 			{
 				int addOrRemoveIndex = VisibleMenuItems.IndexOf(menuItem) + 1;
-				int allItemsIndex = allMenuItems.IndexOf(menuItem);
+				int allItemsIndex = menuItems.IndexOf(menuItem);
 
 				if (menuItem.Collapsed)
 				{
 					allItemsIndex++;
-					while (allItemsIndex < allMenuItems.Count && allMenuItems[allItemsIndex].InnerItem)
+					while (allItemsIndex < menuItems.Count && menuItems[allItemsIndex].InnerItem)
 					{
-						VisibleMenuItems.Insert(addOrRemoveIndex, allMenuItems[allItemsIndex]);
+						VisibleMenuItems.Insert(addOrRemoveIndex, menuItems[allItemsIndex]);
 						allItemsIndex++;
 						addOrRemoveIndex++;
 					}
@@ -51,9 +51,9 @@ namespace CollapsibleMenu
 				else
 				{
 					allItemsIndex++;
-					while (allItemsIndex < allMenuItems.Count && allMenuItems[allItemsIndex].InnerItem)
+					while (allItemsIndex < menuItems.Count && menuItems[allItemsIndex].InnerItem)
 					{
-						VisibleMenuItems.Remove(allMenuItems[allItemsIndex]);
+						VisibleMenuItems.Remove(menuItems[allItemsIndex]);
 						allItemsIndex++;
 					}
 				}
@@ -69,7 +69,7 @@ namespace CollapsibleMenu
 		{
 			var collapsed = false;
 
-			foreach (var item in allMenuItems)
+			foreach (var item in menuItems)
 			{
 				if (item.InnerItem)
 				{
