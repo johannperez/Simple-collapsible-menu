@@ -6,13 +6,8 @@
 		xmlns:local="clr-namespace:CollapsibleMenu;assembly=CollapsibleMenu"
 		Title="Collapsible menu">
 	<MasterDetailPage.Master>
-        <local:MenuPage />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-		<NavigationPage>
-            <x:Arguments>
-				<local:DetailPage/>
-            </x:Arguments>
-        </NavigationPage>
+		
     </MasterDetailPage.Detail>
 </MasterDetailPage>

@@ -11,5 +11,11 @@ namespace CollapsibleMenu
 		{
 			InitializeComponent();
 		}
+
+		public DetailPage(String id)
+		{
+			InitializeComponent();
+			IdLabel.Text = id;
+		}
 	}
 }

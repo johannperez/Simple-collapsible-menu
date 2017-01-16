@@ -9,10 +9,19 @@ namespace CollapsibleMenu
 	{
 		private MenuViewModel viewModel;
 
-		public MenuPage()
+		private MasterDetailPage masterDetailPage;
+
+		public MenuPage(MasterDetailPage masterDetailPage)
 		{
 			InitializeComponent();
+			this.masterDetailPage = masterDetailPage;
+
 			viewModel = new MenuViewModel();
+			viewModel.Navigate += (obj) =>
+			{
+				this.masterDetailPage.Detail = new NavigationPage(new DetailPage(obj));
+				this.masterDetailPage.IsPresented = false;
+			};
 			BindingContext = viewModel;
 		}
 

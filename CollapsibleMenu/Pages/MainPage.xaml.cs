@@ -10,6 +10,8 @@ namespace CollapsibleMenu
 		public MainPage()
 		{
 			InitializeComponent();
+			this.Detail = new NavigationPage(new DetailPage());
+			this.Master = new MenuPage(this);
 		}
 	}
 }
